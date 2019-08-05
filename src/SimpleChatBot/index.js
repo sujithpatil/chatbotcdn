@@ -58,41 +58,40 @@ class SimpleChatBot extends React.Component {
     }
 
     df_event_query = (text , enable=false) => {
-                        axios
-                            .post('https://afternoon-sierra-79133.herokuapp.com/api/df_event_query' , {event : text})
-                            .then(responses=>{
-                                
-        if ( responses && responses.data ) {
-            let array = [];
-            
-            if( enable ) {
-                let userSays = {
-                    speaks : 'user',
-                    data : text
-                };
-                array.push(userSays);
-            }
-            for ( let msg of responses.data.fulfillmentMessages ) {
-                let data = msg.text ? msg.text.text[0].replace('{name}' , this.userName) : msg.payload.fields;
-                let says = {
-                    speaks : 'Jarvis',
-                    data : data
-                };
-                array.push(says);
-            }
-            this.setState({
-                messages : [...this.state.messages , ...array],
-                showBot : true,
-                type : enable && text
-            })
-        } 
-        if( enable ) {
-            this.myRef.current.removeAttribute('disabled');
-            this.myRef.current.focus();
-        }
-        this.scrollToBottom();
-        });
-
+        axios
+            .post('https://afternoon-sierra-79133.herokuapp.com/api/df_event_query' , {event : text})
+            .then(responses => {   
+                        console.log('Response ' , text);                            
+                        if ( responses && responses.data ) {
+                            let array = [];
+                            
+                            if( enable ) {
+                                let userSays = {
+                                    speaks : 'user',
+                                    data : text
+                                };
+                                array.push(userSays);
+                            }
+                            for ( let msg of responses.data.fulfillmentMessages ) {
+                                let data = msg.text ? msg.text.text[0].replace('{name}' , this.userName) : msg.payload.fields;
+                                let says = {
+                                    speaks : 'Jarvis',
+                                    data : data
+                                };
+                                array.push(says);
+                            }
+                            this.setState({
+                                messages : [...this.state.messages , ...array],
+                                showBot : true,
+                                type : enable && text
+                            })
+                        } 
+                        if( enable ) {
+                            this.myRef.current.removeAttribute('disabled');
+                            this.myRef.current.focus();
+                        }
+                        this.scrollToBottom();
+            });
     }
 
     getStatus = (value) => {
@@ -106,7 +105,7 @@ class SimpleChatBot extends React.Component {
 
             axios.get("https://afternoon-sierra-79133.herokuapp.com/api/getstatus/value")
             .then(response => response.data)
-            .then(data=> {
+            .then( data => {
                 let says = [
                     {
                         speaks : 'user',
@@ -119,8 +118,8 @@ class SimpleChatBot extends React.Component {
             ];
                 this.setState({
                     messages : [...this.state.messages, ...says]
-                },()=>{
-                    this.scrollToBottom();
+                }, ()=> {
+                    this.df_event_query('MoreHelp');
                 })
             });
 
@@ -147,7 +146,7 @@ class SimpleChatBot extends React.Component {
                 this.setState({
                     messages : [...this.state.messages, ...says]
                 },()=>{
-                    this.scrollToBottom();
+                    this.df_event_query('MoreHelp');
                 })
             });
         }
