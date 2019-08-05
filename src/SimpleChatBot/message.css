@@ -1,0 +1,48 @@
+.speaker {
+    display: table;
+    background-color: red;
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+    margin: 0 5px;
+    min-width: 50px;
+}
+
+.user {
+    background-color: chartreuse;
+}
+
+.speaker span {
+    display: table-cell;
+    text-align: center;
+    vertical-align: middle; 
+}
+
+.message-row {
+    display: flex;
+    border: 1px solid #f2f2f2;
+    padding: 10px 0;
+    align-items: center;
+}
+
+.user-options {
+    text-align: center;
+}
+
+.option {
+    cursor: pointer;
+    background-color: beige;
+    margin : 5px;
+    padding: 5px;
+}
+
+.table table {
+    margin-left: 65px;
+}
+
+.table table,
+.table td {
+    border: 1px solid;
+    border-collapse: collapse;
+    padding: 5px;
+}

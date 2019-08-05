@@ -1,0 +1,57 @@
+.simple-chat-container {
+    position: fixed;
+    bottom: 15px;
+    right: 15px;
+}
+
+.open-chat-container {
+    overflow: hidden auto;
+    position: relative;
+    width: 400px;
+    height: 400px;
+    box-shadow: 5px 5px 26px 10px rgba(0,0,0,0.92);
+}
+
+.closed-chat-container {
+    background-color: black;
+    color: white;
+    padding: 15px 25px;
+}
+
+.open-chat {
+    cursor: pointer;
+}
+
+.chat-list {
+    height: 250px;
+    max-height: 250px;
+    overflow: auto;
+}
+
+.heading {
+    text-align: center;
+    background-color: #f1f1ff;
+    padding: 15px;
+    position: relative;
+}
+
+.input-container {
+    text-align: center;
+}
+
+.input {
+    padding: 10px;
+    margin: 10px;
+    width: 75%;
+    border-radius: 25px; 
+}
+
+.close-icon:after {
+    content: 'X';
+    display: inline-block;
+    width: 15px;
+    height: 15px;
+    position: absolute;
+    right: 25px;
+    cursor: pointer;
+}
